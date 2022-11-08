@@ -19,11 +19,11 @@ export LD_PRELOAD=$MKLROOT/lib/intel64/libmkl_rt.so
 source $repro_root/env-dace/bin/activate
 
 # single node of numpy
-python3 $repro_root/npbench/run_framework.py -f numpy
+python3 $repro_root/npbench/run_framework.py -f numpy -p paper
 # single node of dace_cpu
-python3 $repro_root/npbench/run_framework.py -f dace_cpu
+python3 $repro_root/npbench/run_framework.py -f dace_cpu -p paper
 # single node of dace_gpu
-python3 $repro_root/npbench/run_framework.py -f dace_gpu
+python3 $repro_root/npbench/run_framework.py -f dace_gpu -p paper
 
 # # multiple nodes of cpu
 `which mpirun` -n 1 $repro_root/dace/samples/distributed/polybench.py
