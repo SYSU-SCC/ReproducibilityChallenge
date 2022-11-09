@@ -11,6 +11,8 @@ source spack-0.18.1/share/spack/setup-env.sh
 
 # to install the software
 spack install gcc@10.2.0
+spack load gcc@10.2.0
+spack compiler find
 spack install python@3.8.5%gcc@10.2.0
 spack install intel-oneapi-compilers%gcc@10.2.0
 spack install cuda@11.1%gcc@10.2.0

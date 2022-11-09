@@ -1,0 +1,5 @@
+compile/dace/
+compile/env-dace/
+compile/spack-0.18.1/
+compile/download/
+compile/npbench/
