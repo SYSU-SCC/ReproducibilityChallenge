@@ -1,1 +1,0 @@
-#define __HASH_doitgen "8425779d643db4bec95413ded6df8e95bbc4daef4b5a8f26c97356ccba84be23"
