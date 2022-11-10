@@ -1,0 +1,110 @@
+{
+    "/shared/home/ccuser/ReproducibilityChallenge/compile/dace/samples/distributed/polybench.py": {
+        "278": [
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 0
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 1
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 2
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 4
+            }
+        ],
+        "275": [
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 0
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 1
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 2
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 4
+            }
+        ],
+        "276": [
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 0
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 1
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 2
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 4
+            }
+        ],
+        "277": [
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 0
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 1
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 2
+            },
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 4
+            }
+        ]
+    },
+    "/shared/home/ccuser/ReproducibilityChallenge/compile/env-dace/lib/python3.8/site-packages/dace/frontend/python/newast.py": {
+        "1243": [
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 3
+            }
+        ]
+    },
+    "null": {
+        "0": [
+            {
+                "sdfg_id": 0,
+                "state_id": 0,
+                "node_id": 7
+            }
+        ]
+    }
+}

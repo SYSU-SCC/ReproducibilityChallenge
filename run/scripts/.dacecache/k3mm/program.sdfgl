@@ -1,0 +1,2 @@
+name,SDFG_intermediate,SDFG,source,argv_0
+k3mm,/shared/home/ccuser/ReproducibilityChallenge/run/scripts/.dacecache/k3mm/program.sdfg,/shared/home/ccuser/ReproducibilityChallenge/run/scripts/_dacegraphs/program.sdfg,/shared/home/ccuser/ReproducibilityChallenge/compile/dace/samples/distributed/polybench.py,/shared/home/ccuser/ReproducibilityChallenge/compile/dace/samples/distributed/polybench.py
