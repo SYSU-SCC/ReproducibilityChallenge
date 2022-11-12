@@ -1,6 +1,6 @@
 #!/bin/bash
 # this is the shell script to install the Dace with development mode
-export $repro_root=$PWD
+export repro_root=$PWD
 cd $repro_root
 git clone --recursive  -b v0.14.1 https://github.com/spcl/dace.git
 cd $repro_root/dace

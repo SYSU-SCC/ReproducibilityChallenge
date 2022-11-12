@@ -82,14 +82,19 @@ if __name__ == "__main__":
                         choices=['S', 'M', 'L', 'paper'],
                         nargs="?",
                         default='S')
+    parser.add_argument("-f",
+                        "--folder",
+                        nargs="?",
+                        default='.')
     args = vars(parser.parse_args())
 
 # create a database connection
-database = r"./npbench.db"
+if(args['folder'][-1]!="/"):
+    args['folder'] += "/"
+database = r"npbench.db"
 #database = r"../../run/output/npbench.db"
 conn = util.create_connection(database)
 data = pd.read_sql_query("SELECT * FROM results", conn)
-print(type(data))
 # get rid of kind and dwarf, we don't use them
 data = data.drop(['timestamp', 'kind', 'dwarf', 'version'],
                  axis=1).reset_index(drop=True)
@@ -228,6 +233,23 @@ plt.setp(ax1.get_xticklabels(),
          rotation=90,
          ha="right",
          rotation_mode="anchor")
+paper_bench = ['azimhist','vadv','sthamfft','sselfeng','spmv','resnet','npgofast','nbody','mlp','mandel2','mandel1','softmax','hdiff','crc16','conv2d','coninteg','clipping','cholesky2','chanflow','cavtflow','azimnaiv','lenet','gramschm','heat3d','jacobi1d','jacobi2d','lu','ludcmp','syr2k','nussinov','seidel2d','symm','syrk','gesummv','mvt','gemver','atax','floydwar','fdtd_2d','durbin','doitgen','deriche','covarian','correlat','cholesky','bicg','trisolv','adi','2mm','3mm','gemm','trmm']
+newidx = []
+oldidx = []
+for j in range(len(paper_bench)):
+    for i in range(len(best_wide['benchmark'])):
+        if(best_wide['benchmark'][i]==paper_bench[j]):
+            newidx.append(i)
+            break
+for i in range(len(best_wide['benchmark'])):
+    for j in range(len(newidx)):
+        if(newidx[j]==i):
+            break
+        elif(j==len(newidx)-1):
+            oldidx.append(i)
+for i in range(len(oldidx)):
+    newidx.append(oldidx[i])
+
 
 for i in range(len(best_wide['benchmark'])):
     # annotate with improvement over numpy
