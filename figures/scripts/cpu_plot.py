@@ -320,5 +320,5 @@ for i in range(len(best_wide['benchmark'])):
 ax1.set_ylabel("Benchmarks", labelpad=0)
 
 plt.tight_layout()
-plt.savefig("heatmap.pdf", dpi=600)
+plt.savefig("cpu-result.pdf", dpi=600)
 plt.show()
