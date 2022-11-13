@@ -20,7 +20,14 @@ res_folder = args["folder"]
 # df = df.drop(['init_time'], axis=1)
 # df = df[['benchmark', 'framework', 'sockets', 'sizes', 'time']]
 
-
+for name in glob.glob(res_folder+'/dace_cpu*.csv'):
+    f=open(name)
+    read_data = f.read()
+    f.close()
+    read_data = 'benchmark,framework,sockets,sizes,time\n'+read_data
+    f=open(name,'w')
+    f.write(read_data)
+    f.close()
 # read dace data
 for name in glob.glob(res_folder+'/dace_cpu*.csv'):
     tdf = pd.read_csv(name)
@@ -102,5 +109,5 @@ ax.legend(custom_lines_r + custom_lines_e,
 
 
 plt.show()
-g.savefig('facet.pdf', bbox_inches='tight')
+g.savefig('dist-result.pdf', bbox_inches='tight')
 
