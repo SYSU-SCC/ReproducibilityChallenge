@@ -81,16 +81,12 @@ def bootstrap_ci(
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-f", "--folder", type=str, nargs="?", default=".")
 parser.add_argument("-p",
 					"--preset",
 					choices=['S', 'M', 'L', 'paper'],
 					nargs="?",
 					default='paper')
 args = vars(parser.parse_args())
-db_folder = args["folder"]
-if(db_folder[-1]!="/"):
-	db_folder += "/"
 # Read data
 data = None
 # pathlist = glob.glob(csv_folder+'/*.csv') 
@@ -101,21 +97,23 @@ data = None
 # 	else:
 # 		data = pd.concat([data, ndata])
 # create a database connection
-database = db_folder+r"npbench.db"
+database = r"../../run/output/npbench-gpu.db"
 
 conn = util.create_connection(database)
 data = pd.read_sql_query("SELECT * FROM results", conn)
 data = data[data['preset'] == args['preset']]
+print("select from database")
 print(data)
 
 # failures = pd.read_csv('NumPy Benchmarks - Failures.csv')
 
 #get rid of kind and dwarf, we don't use them
 data = data.drop(['kind', 'dwarf'], axis=1).reset_index(drop=True)
-
+data = data[data["benchmark"].isin(["2mm","3mm","adi","atax","bicg","cholesky","clipping","correlat","deriche","fdta2d","floydwar","gemm","gemver","gesummv","hdiff","heat3d","jacobi1d","jacobi2d","lu","ludcmp","mandel1","mlp","mvt","npgofast","resnet","seidel2d","softmax","syrk","trisolv","vadv"])]
 # remove everything that does not validate, then get rid of validated column
 # data = data[data['validated']==True]
 data = data.drop(['validated'], axis=1).reset_index(drop=True)
+data = data[data['preset'] == args['preset']]
 frameworks = set(data["framework"])
 print(frameworks)
 # for each framework and benchmark, choose only the best details,mode (based on median runtime), then get rid of those
@@ -124,54 +122,70 @@ best = aggdata.sort_values("time").groupby(["benchmark", "domain", "framework", 
 bestgroup = best.drop(["time"], axis=1)  # remove time, we don't need it and it is actually a median
 data = pd.merge(left=bestgroup, right=data, on=["benchmark", "domain", "framework", "mode", "details"], how="inner") # do a join on data and best
 data = data.drop(['mode', 'details'], axis=1).reset_index(drop=True)
-
-gpu_data = data[data.framework.isin(list("DaCe GPU"))]
+#frameworks = set(data["framework"])
+#print(frameworks)
+#print("op!")
+#pd.set_option('display.max_rows', None)#显示全部行
+#print(data["framework"])
+#print(data["framework"].isin(["dace_gpu"]))
+gpu_data = data[data["framework"].isin(["dace_gpu"])]
+#print("gpu data is ")
+#print(gpu_data)
 benchmarks = set(gpu_data["benchmark"])
 gpu_benchmarks = set()
 for b in benchmarks:
     res = gpu_data[gpu_data["benchmark"]==b]
-    if len(res[res["framework"]=="DaCe GPU"]) > 0:
+    if len(res[res["framework"]=="dace_gpu"]) > 0:
         gpu_benchmarks.add(b)
-final_gpu_data = gpu_data[gpu_data.benchmark.isin(gpu_benchmarks)]
+final_gpu_data = gpu_data[gpu_data["benchmark"].isin(gpu_benchmarks)]
 
-
+print("best")
+print(best)
 # get improvement over numpy (keep times in best_wide_time for numpy column), reorder columns
 best_wide = best.pivot_table(index=["benchmark", "domain"], columns="framework", values="time").reset_index() # pivot to wide form
+#print("op2")
+#print(best_wide)
 best_wide = best_wide.sort_values(by=['domain']).reset_index(drop=True)                         # sort by domain
 # best_wide = best_wide[['benchmark', 'domain', 'CuPy GPU', 'DaCe GPU', 'DaCe', 'Numba', 'Pythran', 'NumPy']].reset_index(drop=True) 
-best_wide = best_wide[['benchmark', 'domain', 'CuPy GPU', 'DaCe GPU', 'NumPy']].reset_index(drop=True) 
+print("best wide is")
+print(best_wide)
+best_wide = best_wide[['benchmark', 'domain', 'dace_gpu', 'numpy']].reset_index(drop=True)
+print("modify the best wide is")
+print(best_wide)
 best_wide_time = best_wide.copy(deep=True)
 # for f in ['CuPy GPU', 'DaCe GPU', 'DaCe', 'Numba', 'Pythran', 'NumPy']:
-for f in ['CuPy GPU', 'DaCe GPU', 'NumPy']:
-    best_wide[f] = best_wide_time['NumPy'] / best_wide[f]
+for f in ['dace_gpu', 'numpy']:
+    best_wide[f] = best_wide_time['numpy'] / best_wide[f]
 
 final_best_wide = best_wide[best_wide.benchmark.isin(gpu_benchmarks)]
-gmean_dace_numpy = gmean(final_best_wide["DaCe GPU"])
-hmean_dace_numpy = hmean(final_best_wide["DaCe GPU"])
-median_dace_numpy = np.median(final_best_wide["DaCe GPU"])
-gmean_cupy_numpy = gmean(final_best_wide["CuPy GPU"])
-hmean_cupy_numpy = hmean(final_best_wide["CuPy GPU"])
-median_cupy_numpy = np.median(final_best_wide["CuPy GPU"])
-gmean_dace_cupy = gmean(final_best_wide["DaCe GPU"] / final_best_wide["CuPy GPU"])
-hmean_dace_cupy = hmean(final_best_wide["DaCe GPU"] / final_best_wide["CuPy GPU"])
-median_dace_cupy = np.median(final_best_wide["DaCe GPU"] / final_best_wide["CuPy GPU"])
+print("final_best_wide is")
+print(final_best_wide)
+gmean_dace_numpy = gmean(final_best_wide["dace_gpu"])
+hmean_dace_numpy = hmean(final_best_wide["dace_gpu"])
+median_dace_numpy = np.median(final_best_wide["dace_gpu"])
+#gmean_cupy_numpy = gmean(final_best_wide["CuPy GPU"])
+#hmean_cupy_numpy = hmean(final_best_wide["CuPy GPU"])
+#median_cupy_numpy = np.median(final_best_wide["CuPy GPU"])
+#gmean_dace_cupy = gmean(final_best_wide["DaCe GPU"] / final_best_wide["CuPy GPU"])
+#hmean_dace_cupy = hmean(final_best_wide["DaCe GPU"] / final_best_wide["CuPy GPU"])
+#median_dace_cupy = np.median(final_best_wide["DaCe GPU"] / final_best_wide["CuPy GPU"])
 print(gmean_dace_numpy, hmean_dace_numpy, median_dace_numpy)
-print(gmean_cupy_numpy, hmean_cupy_numpy, median_cupy_numpy)
-print(gmean_dace_cupy, hmean_dace_cupy, median_dace_cupy)
+#print(gmean_cupy_numpy, hmean_cupy_numpy, median_cupy_numpy)
+#print(gmean_dace_cupy, hmean_dace_cupy, median_dace_cupy)
 
 for i in final_gpu_data.index:
     b = final_gpu_data["benchmark"][i]
-    final_gpu_data["time"][i] /= best_wide_time[best_wide_time["benchmark"]==b]["NumPy"]
+    final_gpu_data["time"][i] /= best_wide_time[best_wide_time["benchmark"]==b]["numpy"]
 
-ax = sns.barplot(x="benchmark", y="time", hue="framework", data=final_gpu_data, palette=["#69A8F5", "#F55B4E"])
+ax = sns.barplot(x="benchmark", y="time", hue="framework", data=final_gpu_data, palette=["#F55B4E"])
 ax.set(xlabel="Benchmark", ylabel="Runtime (relative to NumPy on CPU)", yscale="log")
 ax.axhline(y=1.0, linewidth=2, linestyle="--", color="#F5B645")
-ax.legend(['CuPy', 'DaCe'], loc="best")
+ax.legend(['DaCe'], loc="best")
 leg = ax.get_legend()
-leg.legendHandles[0].set_color("#69A8F5")
-leg.legendHandles[1].set_color("#F55B4E")
+# leg.legendHandles[0].set_color("#69A8F5")
+leg.legendHandles[0].set_color("#F55B4E")
 plt.xticks(rotation=90)
 plt.style.use('classic')
 plt.tight_layout()
-plt.savefig("gpuplot.pdf", dpi=600)
+plt.savefig("../output/figure_gpu.pdf", dpi=600)
 plt.show()

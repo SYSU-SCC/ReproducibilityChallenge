@@ -1,0 +1,162 @@
+SUDO_GID=20001
+MAIL=/var/mail/USER
+USER=USER
+HOME=/USER
+SUDO_UID=20001
+LOGNAME=USER
+TERM=screen
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+LANG=C.UTF-8
+SUDO_COMMAND=./collect_environment.sh
+SHELL=/bin/bash
+SUDO_USER=ccuser
+PWD=/shared/home/ccuser/Author-Kit
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.3 LTS
+Release:	20.04
+Codename:	focal
+Linux amdtest-hpc-pg0-1 5.8.0-1042-azure #45~20.04.1-Ubuntu SMP Wed Sep 15 14:24:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   48 bits physical, 48 bits virtual
+CPU(s):                          120
+On-line CPU(s) list:             0-119
+Thread(s) per core:              1
+Core(s) per socket:              60
+Socket(s):                       2
+NUMA node(s):                    4
+Vendor ID:                       AuthenticAMD
+CPU family:                      25
+Model:                           1
+Model name:                      AMD EPYC 7V73X 64-Core Processor
+Stepping:                        2
+CPU MHz:                         3092.920
+BogoMIPS:                        3693.10
+Hypervisor vendor:               Microsoft
+Virtualization type:             full
+L1d cache:                       3.8 MiB
+L1i cache:                       3.8 MiB
+L2 cache:                        60 MiB
+L3 cache:                        384 MiB
+NUMA node0 CPU(s):               0-29
+NUMA node1 CPU(s):               30-59
+NUMA node2 CPU(s):               60-89
+NUMA node3 CPU(s):               90-119
+Vulnerability Itlb multihit:     Not affected
+Vulnerability L1tf:              Not affected
+Vulnerability Mds:               Not affected
+Vulnerability Meltdown:          Not affected
+Vulnerability Spec store bypass: Vulnerable
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full AMD retpoline, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl tsc_reliable nonstop_tsc cpuid extd_apicid aperfmperf pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext perfctr_core invpcid_single vmmcall fsgsbase bmi1 avx2 smep bmi2 invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves clzero xsaveerptr rdpru arat umip vaes vpclmulqdq rdpid
+MemTotal:       462301300 kB
+MemFree:        384081512 kB
+MemAvailable:   383069880 kB
+Buffers:           20268 kB
+Cached:          2028440 kB
+SwapCached:            0 kB
+Active:         70327312 kB
+Inactive:        1490456 kB
+Active(anon):   70060848 kB
+Inactive(anon):  1269756 kB
+Active(file):     266464 kB
+Inactive(file):   220700 kB
+Unevictable:       18656 kB
+Mlocked:           18656 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 8 kB
+Writeback:             0 kB
+AnonPages:      69786924 kB
+Mapped:           160084 kB
+Shmem:           1554588 kB
+KReclaimable:     535676 kB
+Slab:            1899484 kB
+SReclaimable:     535676 kB
+SUnreclaim:      1363808 kB
+KernelStack:       24064 kB
+PageTables:       144996 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    231150648 kB
+Committed_AS:   75138416 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      277748 kB
+VmallocChunk:          0 kB
+Percpu:           683520 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:  68597760 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:     1101064 kB
+DirectMap2M:    18821120 kB
+DirectMap1G:    451936256 kB
+NAME    MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+loop0     7:0    0         1 loop 
+loop1     7:1    0  61.9M  1 loop /snap/core20/1242
+loop2     7:2    0  67.2M  1 loop /snap/lxd/21835
+loop3     7:3    0  42.2M  1 loop /snap/snapd/14066
+loop4     7:4    0  67.8M  1 loop /snap/lxd/22753
+loop5     7:5    0  32.3M  1 loop /snap/snapd/13170
+loop6     7:6    0  63.2M  1 loop /snap/core20/1695
+loop7     7:7    0         0 loop 
+sda       8:0    0    30G  0 disk 
+├─sda1    8:1    0  29.9G  0 part /
+├─sda14   8:14   0     4M  0 part 
+└─sda15   8:15   0   106M  0 part /boot/efi
+sdb       8:16   0   480G  0 disk 
+└─sdb1    8:17   0   480G  0 part /mnt
+md0       9:0    0         0 md   
+nvme0n1 259:0    0 894.3G  0 disk 
+nvme1n1 259:1    0 894.3G  0 disk 
+[0:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sda   32.2GB
+[0:0:0:1]    disk    Msft     Virtual Disk     1.0   /dev/sdb    515GB
+[N:0:0:1]    disk    Microsoft NVMe Direct Disk__1              /dev/nvme0n1   960GB
+[N:1:0:1]    disk    Microsoft NVMe Direct Disk__1              /dev/nvme1n1   960GB
+NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.
+
+H/W path      Device        Class          Description
+======================================================
+                            system         Virtual Machine (None)
+/0                          bus            Virtual Machine
+/0/0                        memory         1MiB BIOS
+/0/4                        processor      AMD EPYC 7V73X 64-Core Processor
+/0/5                        processor      AMD EPYC 7V73X 64-Core Processor
+/0/7                        memory         448GiB System Memory
+/0/7/0                      memory         1GiB 
+/0/7/1                      memory         59GiB 
+/0/7/2                      memory         52GiB 
+/0/7/3                      memory         112GiB 
+/0/7/4                      memory         112GiB 
+/0/7/5                      memory         112GiB 
+/0/1          ibP257s62389  network        MT28908 Family [ConnectX-6 Virtual Function]
+/0/2                        storage        Microsoft Corporation
+/0/2/0        /dev/nvme1    storage        Microsoft NVMe Direct Disk
+/0/2/0/1      /dev/nvme1n1  disk           960GB NVMe namespace
+/0/3                        storage        Microsoft Corporation
+/0/3/0        /dev/nvme0    storage        Microsoft NVMe Direct Disk
+/0/3/0/1      /dev/nvme0n1  disk           960GB NVMe namespace
+/0/6                        communication  PnP device PNP0501
+/0/8                        communication  PnP device PNP0501
+/0/9                        system         PnP device PNP0b00
+/0/a          scsi0         storage        
+/0/a/0.0.0    /dev/sda      disk           32GB Virtual Disk
+/0/a/0.0.0/1  /dev/sda1     volume         29GiB EXT4 volume
+/0/a/0.0.0/e  /dev/sda14    volume         4095KiB BIOS Boot partition
+/0/a/0.0.0/f  /dev/sda15    volume         105MiB Windows FAT volume
+/0/a/0.0.1    /dev/sdb      disk           515GB Virtual Disk
+/0/a/0.0.1/1  /dev/sdb1     volume         479GiB EXT4 volume
+/1            eth0          network        Ethernet interface

@@ -82,16 +82,10 @@ if __name__ == "__main__":
                         choices=['S', 'M', 'L', 'paper'],
                         nargs="?",
                         default='S')
-    parser.add_argument("-f",
-                        "--folder",
-                        nargs="?",
-                        default='.')
     args = vars(parser.parse_args())
 
 # create a database connection
-if(args['folder'][-1]!="/"):
-    args['folder'] += "/"
-database = r"npbench.db"
+database = r"../../run/output/npbench-cpu.db"
 #database = r"../../run/output/npbench.db"
 conn = util.create_connection(database)
 data = pd.read_sql_query("SELECT * FROM results", conn)
@@ -320,5 +314,5 @@ for i in range(len(best_wide['benchmark'])):
 ax1.set_ylabel("Benchmarks", labelpad=0)
 
 plt.tight_layout()
-plt.savefig("cpu-result.pdf", dpi=600)
+plt.savefig("../output/figure_cpu.pdf", dpi=600)
 plt.show()
